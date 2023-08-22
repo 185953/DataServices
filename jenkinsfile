@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Copy Files to VM') {
+            steps {
+                script {
+                    def repositoryUrl = 'https://github.com/185953/DataServices.git'
+                  
+                    sh 'curl -L -o /path/to/airflow/dags/sample_gcs_to_bigquery_dag.py ' + repositoryUrl + '/raw/fbr-nirmal/sample_gcs_to_bigquery_dag.py'
+                    sh 'curl -L -o /path/to/airflow/dags/execute_sql_to_gcs_dag.py ' + repositoryUrl + '/raw/fbr-nirmal/execute_sql_to_gcs_dag.py'
+                    sh 'curl -L -o /path/to/airflow/data_processing.py ' + repositoryUrl + '/raw/fbr-nirmal/data_processing.py'
+                }
+            }
+        }
+    }
+}
