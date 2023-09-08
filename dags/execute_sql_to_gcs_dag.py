@@ -35,6 +35,6 @@ with DAG(
         task_id="execute_sql_task",
         python_callable=execute_sql_script,
     )
-	
-	execute_sql_task
+
+    execute_sql_task
 
