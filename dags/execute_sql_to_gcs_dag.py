@@ -1,7 +1,7 @@
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.operators.python import PythonOperator
-from airflow.utils.dates import days_ago
+from google.cloud import bigquery
 import subprocess
 
 def execute_sql_script():
@@ -28,17 +28,13 @@ default_args = {
 with DAG(
     "execute_sql_to_gcs_dag",
     default_args=default_args,
-    schedule=None, 
+    schedule_interval=None,
     catchup=False,
 ) as dag:
-
- 
-
     execute_sql_task = PythonOperator(
         task_id="execute_sql_task",
         python_callable=execute_sql_script,
     )
+	
+	execute_sql_task
 
- 
-
-    execute_sql_task
