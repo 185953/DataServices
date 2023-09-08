@@ -17,7 +17,7 @@ def execute_sql_script():
     except subprocess.CalledProcessError as e:
         print("Error executing gsutil command:", e.output)
 
- default_args = {
+default_args = {
     "owner": "airflow",
     "depends_on_past": False,
     "start_date": datetime(2023, 8, 8),
