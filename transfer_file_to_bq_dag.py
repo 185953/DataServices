@@ -1,10 +1,11 @@
+
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.providers.google.cloud.transfers.gcs_to_bigquery import GCSToBigQueryOperator
 
 BQ_PROJECT = "dataservices-271014"
 BQ_DATASET = "customer_task"
-BQ_TABLE = "table_data"
+BQ_TABLE = "sales_data"
 GCS_BUCKET = "taskbucket1"
 
 default_args = {
@@ -29,7 +30,7 @@ transfer_file_to_bq = GCSToBigQueryOperator(
     task_id='transfer_file_to_bq',
     bucket='taskbucket1',
     source_objects='my_folder/mydata.csv',
-    destination_project_dataset_table='dataservices-271014.customer_task.table_data',
+    destination_project_dataset_table='dataservices-271014.customer_task.sales_data',
     autodetect=True,
     source_format='CSV',
     skip_leading_rows=1,
